@@ -1,16 +1,17 @@
-# GameTools KR V2 — Deploy package
+# GameTools KR V3
 
-## 로컬 실행
-`public/index.html`을 더블클릭합니다.
+FPS 감도·DPI 통합 계산기 배포본입니다.
 
-## GitHub
-저장소 루트에 이 패키지의 `public` 폴더와 `README.md`를 업로드합니다.
-GitHub 웹에서는 Add file > Upload files에서 폴더 드래그앤드롭이 가능합니다.
+## 배포 구조
+- `public/index.html`
+- `public/styles.css`
+- `public/app.js`
+- `public/robots.txt`
+- `public/sitemap.xml`
+- `public/_headers`
+- `wrangler.jsonc`
 
-## Cloudflare Pages
-- Production branch: main
-- Framework preset: None
-- Build command: 비워두기
-- Build output directory: public
+## 현재 공개 주소
+https://gametools-kr.yunsu02192979.workers.dev/
 
-배포 후 발급된 `*.pages.dev` 주소를 기준으로 canonical과 sitemap.xml을 추가합니다.
+V3에는 실제 공개 주소 기준 canonical, Open Graph URL, sitemap, robots sitemap 선언, Wrangler 기본 설정을 추가했습니다.

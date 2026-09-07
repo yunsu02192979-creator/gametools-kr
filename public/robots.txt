@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://gametools-kr.yunsu02192979.workers.dev/sitemap.xml
