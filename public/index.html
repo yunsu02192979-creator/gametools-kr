@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FPS 감도 변환기 | VALORANT·CS2·Apex·Overwatch 2 cm/360 계산</title>
+  <meta name="description" content="VALORANT, Counter-Strike 2, Apex Legends, Overwatch 2의 마우스 감도를 cm/360 기준으로 변환합니다. eDPI, DPI 변경, 동일 감도표, 설정 저장과 공유를 한 번에 확인하세요." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="theme-color" content="#0a0d12" />
+  <meta property="og:title" content="FPS 감도 변환기 | cm/360 · eDPI 계산" />
+  <meta property="og:description" content="게임 간 마우스 감도를 cm/360 기준으로 변환하고 eDPI와 동일 감도표를 한 번에 확인합니다." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ko_KR" />
+  <link rel="stylesheet" href="./styles.css" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "GameTools KR FPS 감도 변환기",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Any",
+    "inLanguage": "ko-KR",
+    "description": "VALORANT, Counter-Strike 2, Apex Legends, Overwatch 2의 마우스 감도를 cm/360 기준으로 변환하는 브라우저 도구입니다."
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="brand" href="#top" aria-label="GameTools KR 홈">GameTools <span>KR</span></a>
+      <nav class="nav" aria-label="주요 메뉴">
+        <a href="#converter">감도 변환</a>
+        <a href="#table">전체 감도표</a>
+        <a href="#guide">계산 원리</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero wrap">
+      <div class="eyebrow">FPS AIM TOOL · V2</div>
+      <h1>게임이 바뀌어도<br><span>손의 이동거리</span>는 그대로.</h1>
+      <p class="hero-copy">cm/360을 기준으로 VALORANT, Counter-Strike 2, Apex Legends, Overwatch 2의 감도를 변환하고 eDPI와 모든 지원 게임의 동일 감도를 한 번에 확인합니다.</p>
+      <div class="hero-pills" aria-label="지원 기능">
+        <span>cm/360</span><span>eDPI</span><span>DPI 변경</span><span>설정 저장</span><span>URL 공유</span>
+      </div>
+    </section>
+
+    <section id="converter" class="wrap panel calculator-panel">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">SENSITIVITY CONVERTER</div>
+          <h2>감도 변환</h2>
+        </div>
+        <button id="swapBtn" class="ghost-btn" type="button" aria-label="게임 서로 바꾸기">↔ 게임 바꾸기</button>
+      </div>
+
+      <div class="form-grid">
+        <label>
+          <span>현재 게임</span>
+          <select id="sourceGame"></select>
+        </label>
+        <label>
+          <span>현재 감도</span>
+          <input id="sourceSens" type="number" min="0.0001" step="0.001" inputmode="decimal" value="0.4" />
+        </label>
+        <label>
+          <span>현재 DPI</span>
+          <input id="sourceDpi" type="number" min="1" step="50" inputmode="numeric" value="800" />
+        </label>
+        <label>
+          <span>바꿀 게임</span>
+          <select id="targetGame"></select>
+        </label>
+        <label>
+          <span>바꿀 DPI</span>
+          <input id="targetDpi" type="number" min="1" step="50" inputmode="numeric" value="800" />
+        </label>
+      </div>
+
+      <div id="errorBox" class="error" role="alert" hidden></div>
+
+      <div class="result-grid" aria-live="polite">
+        <article class="result-card featured">
+          <span class="result-label">변환 감도</span>
+          <strong id="targetSens">1.273</strong>
+          <small id="targetGameLabel">Counter-Strike 2</small>
+          <div class="result-actions">
+            <button id="copyBtn" class="copy-btn" type="button">결과 복사</button>
+            <button id="shareBtn" class="copy-btn" type="button">설정 URL 복사</button>
+          </div>
+        </article>
+        <article class="result-card">
+          <span class="result-label">cm / 360°</span>
+          <strong id="cm360">40.82</strong>
+          <small>한 바퀴 회전에 필요한 실제 마우스 이동거리</small>
+        </article>
+        <article class="result-card">
+          <span class="result-label">현재 eDPI</span>
+          <strong id="sourceEdpi">320</strong>
+          <small>DPI × 게임 내 감도</small>
+        </article>
+        <article class="result-card">
+          <span class="result-label">바꾼 eDPI</span>
+          <strong id="targetEdpi">1,018</strong>
+          <small>게임마다 감도 스케일이 달라 게임 간 직접 비교용은 아님</small>
+        </article>
+      </div>
+
+      <div class="save-row">
+        <input id="profileName" type="text" maxlength="30" placeholder="예: 발로란트 메인 세팅" />
+        <button id="saveBtn" class="primary-btn" type="button">현재 설정 저장</button>
+      </div>
+      <div id="savedProfiles" class="saved-profiles"></div>
+    </section>
+
+    <section id="table" class="wrap panel">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">SAME CM/360</div>
+          <h2>모든 지원 게임의 동일 감도</h2>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>게임</th><th>감도</th><th>eDPI</th></tr></thead>
+          <tbody id="allGamesBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="guide" class="wrap content-grid">
+      <article class="panel prose">
+        <div class="eyebrow">HOW IT WORKS</div>
+        <h2>왜 cm/360으로 맞추나?</h2>
+        <p>게임마다 감도 숫자의 의미가 다릅니다. eDPI는 같은 게임 안에서 비교할 때 편하지만, 게임 간 변환에서는 실제 마우스를 몇 cm 움직여 360° 회전하는지를 나타내는 <strong>cm/360</strong>을 기준으로 비교할 수 있습니다.</p>
+        <p class="formula">cm/360 = 2.54 × 360 ÷ (DPI × 감도 × yaw)</p>
+        <p>이 계산기는 선형 hip-fire 감도를 대상으로 합니다. ADS, 스코프, FOV, 마우스 가속, 게임별 입력 처리 차이 때문에 숫자가 같아도 체감은 달라질 수 있으므로 실제 게임에서 미세 조정하세요.</p>
+      </article>
+
+      <aside class="panel note-panel">
+        <div class="eyebrow">DATA NOTE</div>
+        <h2>계수 주의사항</h2>
+        <p>게임사가 yaw 값을 항상 공식 문서로 공개하는 것은 아니므로, 이 버전은 각 게임에서 널리 사용되는 감도 계수를 기준으로 계산합니다.</p>
+        <p><strong>PUBG는 아직 제외했습니다.</strong> 감도 슬라이더 특성을 단순 선형 계수 하나로 처리하면 부정확할 수 있어 별도 검증 후 추가합니다.</p>
+      </aside>
+    </section>
+
+    <section id="faq" class="wrap panel faq-panel">
+      <div class="eyebrow">FAQ</div>
+      <h2>자주 묻는 질문</h2>
+      <details open>
+        <summary>eDPI만 같으면 다른 게임에서도 같은 감도인가요?</summary>
+        <p>아닙니다. eDPI는 DPI × 게임 내 감도라서 게임마다 감도 스케일이 다르면 직접 비교하기 어렵습니다. 이 도구는 게임별 계수를 반영해 cm/360을 기준으로 변환합니다.</p>
+      </details>
+      <details>
+        <summary>DPI를 바꿔도 같은 감도를 유지할 수 있나요?</summary>
+        <p>가능합니다. 바꿀 DPI를 입력하면 같은 회전거리가 유지되도록 목표 게임 감도를 다시 계산합니다.</p>
+      </details>
+      <details>
+        <summary>변환한 감도가 게임에서 완전히 똑같이 느껴지나요?</summary>
+        <p>항상 그렇지는 않습니다. FOV, ADS 배율, 가속, 게임 엔진의 입력 처리와 시각적 차이 때문에 체감이 달라질 수 있습니다. 변환값은 출발점으로 사용하고 실제 플레이에서 미세 조정하는 편이 좋습니다.</p>
+      </details>
+      <details>
+        <summary>설정 저장은 서버에 전송되나요?</summary>
+        <p>현재 버전의 저장 설정은 브라우저의 localStorage에만 저장됩니다. 브라우저 데이터를 삭제하면 저장한 설정도 사라질 수 있습니다.</p>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <span>GameTools KR · Prototype V2</span>
+      <span>계산과 설정 저장은 브라우저에서 처리됩니다.</span>
+    </div>
+  </footer>
+
+  <script src="./app.js"></script>
+</body>
+</html>
