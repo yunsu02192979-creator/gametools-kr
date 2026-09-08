@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CS2 → VALORANT 감도 변환기 | GameTools KR</title>
+  <meta name="description" content="Counter-Strike 2 감도와 DPI를 입력하면 같은 cm/360을 유지하는 VALORANT 감도를 계산합니다. DPI 변경도 함께 반영합니다." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="theme-color" content="#0a0d12" />
+  <link rel="canonical" href="https://gametools-kr.yunsu02192979.workers.dev/cs2-to-valorant/" />
+  <meta property="og:title" content="CS2 → VALORANT 감도 변환기 | GameTools KR" />
+  <meta property="og:description" content="Counter-Strike 2 감도와 DPI를 입력하면 같은 cm/360을 유지하는 VALORANT 감도를 계산합니다. DPI 변경도 함께 반영합니다." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://gametools-kr.yunsu02192979.workers.dev/cs2-to-valorant/" />
+  <meta property="og:locale" content="ko_KR" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "CS2 → VALORANT 감도 변환기",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "inLanguage": "ko-KR",
+  "url": "https://gametools-kr.yunsu02192979.workers.dev/cs2-to-valorant/",
+  "description": "Counter-Strike 2 감도와 DPI를 입력하면 같은 cm/360을 유지하는 VALORANT 감도를 계산합니다. DPI 변경도 함께 반영합니다."
+}</script>
+</head>
+<body>
+  <header class="site-header"><div class="wrap header-inner">
+    <a class="brand" href="/" aria-label="GameTools KR 홈">GameTools <span>KR</span></a>
+    <nav class="nav" aria-label="도구 메뉴"><a href="/">통합 변환</a><a href="/edpi-calculator/">eDPI</a><a href="/cm360-calculator/">cm/360</a><a href="/valorant-to-cs2/">VAL→CS2</a></nav>
+  </div></header>
+  <main>
+    <section class="page-hero wrap">
+      <div class="eyebrow">SENSITIVITY CONVERTER</div>
+      <h1>CS2 감도를 VALORANT로 변환</h1>
+      <p>Counter-Strike 2 감도와 DPI를 입력하면 같은 cm/360을 유지하는 VALORANT 감도를 계산합니다. DPI 변경도 함께 반영합니다.</p>
+      <div class="breadcrumb"><a href="/">GameTools KR</a> / CS2 → VALORANT 감도 변환기</div>
+    </section>
+    <section class="wrap panel">
+      <div class="section-head"><div><div class="eyebrow">DIRECT CONVERTER</div><h2>CS2 → VALORANT 감도 변환기</h2></div></div>
+      <div class="simple-form">
+        <label><span>CS2 감도</span><input id="sens" type="number" min="0.0001" step="0.001" value="1.273"></label>
+        <label><span>현재 DPI</span><input id="dpi" type="number" min="1" step="50" value="800"></label>
+        <label><span>바꿀 DPI</span><input id="targetDpi" type="number" min="1" step="50" value="800"></label>
+      </div>
+      <div id="error" class="error" hidden></div>
+      <div class="simple-result">
+        <article class="result-card featured"><span class="result-label">VALORANT 감도</span><strong id="targetSens">-</strong><small id="targetDpiText">800 DPI 기준</small><button id="copy" class="copy-btn" type="button">결과 복사</button></article>
+        <article class="result-card"><span class="result-label">cm / 360°</span><strong id="cm">-</strong><small>변환 전후 동일한 기본 회전거리</small></article>
+        <article class="result-card"><span class="result-label">현재 eDPI</span><strong id="edpi">-</strong><small>CS2 내부 설정 비교용</small></article>
+      </div>
+    </section>
+    <section class="wrap content-stack">
+      <article class="panel prose"><div class="eyebrow">EXAMPLE</div><h2>계산 예시</h2><p id="exampleText"></p><p>게임마다 감도 숫자의 크기가 다르기 때문에 단순히 같은 숫자를 입력하면 같은 감도가 되지 않습니다. 이 페이지는 기본 회전거리(cm/360)가 유지되도록 변환합니다.</p></article>
+      <article class="panel prose"><div class="eyebrow">RELATED</div><h2>관련 도구</h2><div class="link-list"><a href="/">통합 감도 변환기</a><a href="/cm360-calculator/">cm/360 계산기</a><a href="/edpi-calculator/">eDPI 계산기</a><a href="/valorant-to-cs2/">반대 방향 변환</a></div></article>
+    </section>
+  </main>
+  <footer><div class="wrap footer-inner"><span>GameTools KR · V4</span><span>계산은 브라우저에서 처리됩니다.</span></div></footer>
+  <script src="/core.js"></script>
+  <script>const q=(s)=>document.querySelector(s); function calc(){ const sens=GameTools.validPositive(q('#sens').value),dpi=GameTools.validPositive(q('#dpi').value),tdpi=GameTools.validPositive(q('#targetDpi').value); if(!sens||!dpi||!tdpi){q('#error').hidden=false;q('#error').textContent='0보다 큰 숫자를 입력하세요.';return;} q('#error').hidden=true; const out=GameTools.convert('cs2','valorant',dpi,sens,tdpi); const cm=GameTools.cm360('cs2',dpi,sens); q('#targetSens').textContent=GameTools.format(out,4); q('#targetDpiText').textContent=`${GameTools.format(tdpi,0)} DPI 기준`; q('#cm').textContent=GameTools.format(cm,2); q('#edpi').textContent=GameTools.format(GameTools.edpi(dpi,sens),2); q('#exampleText').textContent=`${GameTools.GAMES['cs2'].name} 감도 ${GameTools.format(sens,4)} / ${GameTools.format(dpi,0)} DPI → ${GameTools.GAMES['valorant'].name} 감도 ${GameTools.format(out,4)} / ${GameTools.format(tdpi,0)} DPI · ${GameTools.format(cm,2)} cm/360`; } ['#sens','#dpi','#targetDpi'].forEach(id=>{q(id).addEventListener('input',calc);q(id).addEventListener('change',calc)}); q('#copy').addEventListener('click',()=>GameTools.copy(`${GameTools.GAMES['valorant'].name} 감도 ${q('#targetSens').textContent} | ${q('#cm').textContent} cm/360`,q('#copy'))); calc();</script>
+</body>
+</html>

@@ -1,17 +1,15 @@
-# GameTools KR V3
+# GameTools KR V4
 
-FPS 감도·DPI 통합 계산기 배포본입니다.
+V4 adds four search-focused calculator pages while keeping the original integrated sensitivity converter.
 
-## 배포 구조
-- `public/index.html`
-- `public/styles.css`
-- `public/app.js`
-- `public/robots.txt`
-- `public/sitemap.xml`
-- `public/_headers`
-- `wrangler.jsonc`
+## New pages
+- `/edpi-calculator/`
+- `/cm360-calculator/`
+- `/valorant-to-cs2/`
+- `/cs2-to-valorant/`
 
-## 현재 공개 주소
-https://gametools-kr.yunsu02192979.workers.dev/
+## Deploy
+Upload/replace the V4 files in the existing GitHub repository and commit. Cloudflare Builds should deploy automatically.
 
-V3에는 실제 공개 주소 기준 canonical, Open Graph URL, sitemap, robots sitemap 선언, Wrangler 기본 설정을 추가했습니다.
+### Important
+If your repository already contains the Google Search Console verification HTML file (for example `googleXXXXXXXX.html`) inside `public/`, keep it there. V4 does not include or replace that account-specific file.
