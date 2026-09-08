@@ -118,3 +118,11 @@ tr[data-target="true"] td { background:rgba(124,247,199,.045); }
   .tool-grid, .simple-form, .simple-result { grid-template-columns:1fr; }
   .page-hero { padding-top:48px; }
 }
+
+
+/* V6 trust pages */
+.footer-links { display:flex; flex-wrap:wrap; gap:14px; }
+.footer-links a { color:#cbd6e1; }
+.footer-links a:hover { color:var(--accent); }
+.primary-link { display:inline-flex; border:1px solid var(--line); border-radius:12px; padding:10px 13px; color:#07110d; background:var(--accent); font-weight:800; }
+@media (max-width:600px){ .footer-links { gap:10px; } }

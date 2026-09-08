@@ -1,20 +1,12 @@
-# GameTools KR V5
+# GameTools KR V6
 
-V5 adds four search-focused calculator pages while keeping the original integrated sensitivity converter.
+V6 adds site trust/monetization groundwork while keeping V5 analytics:
 
-## New pages
-- `/edpi-calculator/`
-- `/cm360-calculator/`
-- `/valorant-to-cs2/`
-- `/cs2-to-valorant/`
+- `/about/` site introduction and feedback link
+- `/methodology/` calculation formulas, coefficients, limitations
+- `/privacy/` current data/analytics disclosure
+- footer links across all main pages
+- sitemap updated to 8 URLs
+- Cloudflare Web Analytics beacon retained
 
-## Deploy
-Upload/replace the V5 files in the existing GitHub repository and commit. Cloudflare Builds should deploy automatically.
-
-### Important
-If your repository already contains the Google Search Console verification HTML file (for example `googleXXXXXXXX.html`) inside `public/`, keep it there. V5 does not include or replace that account-specific file.
-
-
-## V5 변경사항
-- Cloudflare Web Analytics를 5개 주요 페이지에 설치했습니다.
-- Analytics token: d150062c061a4cf4803c296831609061
+Deploy by uploading `public`, `README.md`, and `wrangler.jsonc` to the existing GitHub repository. Keep the existing Google Search Console verification HTML file in `public/`.
