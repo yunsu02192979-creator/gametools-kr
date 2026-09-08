@@ -126,3 +126,8 @@ tr[data-target="true"] td { background:rgba(124,247,199,.045); }
 .footer-links a:hover { color:var(--accent); }
 .primary-link { display:inline-flex; border:1px solid var(--line); border-radius:12px; padding:10px 13px; color:#07110d; background:var(--accent); font-weight:800; }
 @media (max-width:600px){ .footer-links { gap:10px; } }
+
+/* V7 DPI sensitivity calculator */
+.quick-dpi { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+.quick-dpi button { border:1px solid var(--line); background:#0b1017; color:#dce5ee; padding:9px 12px; border-radius:999px; cursor:pointer; }
+.quick-dpi button:hover { border-color:rgba(124,247,199,.5); color:var(--accent); }

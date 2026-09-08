@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DPI 변경 감도 계산기 | 400·800·1600 DPI 감도 변환</title>
+  <meta name="description" content="마우스 DPI를 400, 800, 1600, 3200 등으로 바꿀 때 같은 eDPI를 유지하는 게임 감도를 계산합니다. 현재 DPI·감도와 새 DPI만 입력하세요." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="theme-color" content="#0a0d12" />
+  <link rel="canonical" href="https://gametools-kr.yunsu02192979.workers.dev/dpi-sensitivity-calculator/" />
+  <meta property="og:title" content="DPI 변경 감도 계산기 | 400·800·1600 DPI 감도 변환" />
+  <meta property="og:description" content="DPI를 바꿔도 같은 감도를 유지하려면 새 게임 감도를 얼마로 맞춰야 하는지 계산합니다." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://gametools-kr.yunsu02192979.workers.dev/dpi-sensitivity-calculator/" />
+  <meta property="og:locale" content="ko_KR" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script type="application/ld+json">{
+    "@context":"https://schema.org",
+    "@type":"WebApplication",
+    "name":"DPI 변경 감도 계산기",
+    "applicationCategory":"UtilitiesApplication",
+    "operatingSystem":"Any",
+    "inLanguage":"ko-KR",
+    "url":"https://gametools-kr.yunsu02192979.workers.dev/dpi-sensitivity-calculator/",
+    "description":"마우스 DPI를 변경할 때 같은 eDPI를 유지하는 게임 감도를 계산합니다."
+  }</script>
+</head>
+<body>
+  <header class="site-header"><div class="wrap header-inner">
+    <a class="brand" href="/" aria-label="GameTools KR 홈">GameTools <span>KR</span></a>
+    <nav class="nav" aria-label="도구 메뉴"><a href="/">통합 변환</a><a href="/dpi-sensitivity-calculator/">DPI 변경</a><a href="/edpi-calculator/">eDPI</a><a href="/cm360-calculator/">cm/360</a></nav>
+  </div></header>
+
+  <main>
+    <section class="page-hero wrap">
+      <div class="eyebrow">DPI SENSITIVITY TOOL</div>
+      <h1>DPI 변경 감도 계산기</h1>
+      <p>400 → 800 DPI, 800 → 1600 DPI처럼 마우스 DPI를 바꿀 때 기존 감도와 같은 eDPI를 유지하는 새 게임 감도를 계산합니다.</p>
+      <div class="breadcrumb"><a href="/">GameTools KR</a> / DPI 변경 감도 계산기</div>
+    </section>
+
+    <section class="wrap panel">
+      <div class="section-head"><div><div class="eyebrow">SAME EDPI</div><h2>새 DPI 감도 계산</h2></div></div>
+      <div class="simple-form">
+        <label><span>현재 DPI</span><input id="currentDpi" type="number" min="1" step="50" value="800" inputmode="numeric"></label>
+        <label><span>현재 게임 감도</span><input id="currentSens" type="number" min="0.0001" step="0.001" value="0.4" inputmode="decimal"></label>
+        <label><span>바꿀 DPI</span><input id="newDpi" type="number" min="1" step="50" value="1600" inputmode="numeric"></label>
+      </div>
+      <div class="quick-dpi" aria-label="빠른 DPI 선택">
+        <button type="button" data-dpi="400">400 DPI</button>
+        <button type="button" data-dpi="800">800 DPI</button>
+        <button type="button" data-dpi="1600">1600 DPI</button>
+        <button type="button" data-dpi="3200">3200 DPI</button>
+      </div>
+      <div id="error" class="error" hidden></div>
+      <div class="simple-result">
+        <article class="result-card featured"><span class="result-label">새 게임 감도</span><strong id="newSens">0.2</strong><small id="newSensText">1600 DPI에서 같은 eDPI</small></article>
+        <article class="result-card"><span class="result-label">현재 eDPI</span><strong id="edpi">320</strong><small>DPI × 게임 감도</small></article>
+        <article class="result-card"><span class="result-label">DPI 변화</span><strong id="ratio">2×</strong><small id="ratioText">DPI가 2배면 감도는 절반</small></article>
+      </div>
+    </section>
+
+    <section class="wrap content-stack">
+      <article class="panel prose">
+        <div class="eyebrow">QUICK TABLE</div><h2>같은 eDPI의 빠른 감도표</h2>
+        <p>현재 설정을 기준으로 자주 쓰는 DPI에서 같은 eDPI가 되는 감도를 자동으로 계산합니다.</p>
+        <div class="table-wrap"><table class="mini-table"><thead><tr><th>DPI</th><th>같은 eDPI 감도</th><th>eDPI</th></tr></thead><tbody id="dpiTable"></tbody></table></div>
+      </article>
+
+      <article class="panel prose">
+        <div class="eyebrow">FORMULA</div><h2>DPI를 바꿀 때 감도 계산법</h2>
+        <p class="formula">새 감도 = 현재 감도 × 현재 DPI ÷ 새 DPI</p>
+        <p>예를 들어 800 DPI에서 감도 0.4를 쓰다가 1600 DPI로 바꾸면 새 감도는 0.2입니다. 이렇게 하면 같은 게임 안에서는 eDPI가 320으로 유지됩니다.</p>
+        <p><strong>주의:</strong> 이 계산은 같은 게임 안에서 DPI만 바꾸는 상황을 위한 것입니다. 서로 다른 게임은 감도 스케일이 달라 eDPI만 맞추면 안 되고, <a href="/">통합 감도 변환기</a>나 <a href="/cm360-calculator/">cm/360 계산기</a>를 사용하세요.</p>
+      </article>
+
+      <article class="panel prose">
+        <div class="eyebrow">EXAMPLES</div><h2>자주 쓰는 DPI 변경 예시</h2>
+        <ul>
+          <li>400 DPI 감도 2.0 → 800 DPI 감도 1.0</li>
+          <li>800 DPI 감도 0.4 → 1600 DPI 감도 0.2</li>
+          <li>1600 DPI 감도 0.25 → 800 DPI 감도 0.5</li>
+        </ul>
+        <p>DPI가 2배가 되면 같은 eDPI를 유지하기 위한 게임 감도는 절반이 되고, DPI가 절반이 되면 게임 감도는 2배가 됩니다.</p>
+      </article>
+
+      <article class="panel prose"><div class="eyebrow">RELATED</div><h2>관련 계산기</h2><div class="link-list"><a href="/edpi-calculator/">eDPI 계산기</a><a href="/cm360-calculator/">cm/360 계산기</a><a href="/valorant-to-cs2/">VALORANT → CS2</a><a href="/cs2-to-valorant/">CS2 → VALORANT</a><a href="/">통합 감도 변환기</a></div></article>
+    </section>
+  </main>
+
+  <footer><div class="wrap footer-inner"><span>GameTools KR · V7</span><nav class="footer-links" aria-label="사이트 정보"><a href="/about/">소개</a><a href="/methodology/">계산 기준</a><a href="/privacy/">개인정보</a></nav></div></footer>
+  <script>
+    const $ = (s) => document.querySelector(s);
+    const positive = (value) => { const n = Number(value); return Number.isFinite(n) && n > 0 ? n : null; };
+    const fmt = (n, max=4) => new Intl.NumberFormat('ko-KR',{maximumFractionDigits:max}).format(n);
+    const commonDpis = [400,800,1600,3200];
+    function calculate(){
+      const currentDpi=positive($('#currentDpi').value), currentSens=positive($('#currentSens').value), newDpi=positive($('#newDpi').value);
+      if(!currentDpi || !currentSens || !newDpi){ $('#error').hidden=false; $('#error').textContent='0보다 큰 숫자를 입력하세요.'; return; }
+      $('#error').hidden=true;
+      const edpi=currentDpi*currentSens;
+      const newSens=edpi/newDpi;
+      const ratio=newDpi/currentDpi;
+      $('#newSens').textContent=fmt(newSens,6);
+      $('#newSensText').textContent=`${fmt(newDpi,0)} DPI에서 같은 eDPI`;
+      $('#edpi').textContent=fmt(edpi,2);
+      $('#ratio').textContent=`${fmt(ratio,2)}×`;
+      $('#ratioText').textContent = ratio >= 1 ? `DPI가 ${fmt(ratio,2)}배면 감도는 ${fmt(1/ratio,3)}배` : `DPI가 ${fmt(ratio,2)}배면 감도는 ${fmt(1/ratio,2)}배`;
+      $('#dpiTable').innerHTML=commonDpis.map(dpi=>`<tr${dpi===newDpi?' data-target="true"':''}><td>${fmt(dpi,0)}</td><td>${fmt(edpi/dpi,6)}</td><td>${fmt(edpi,2)}</td></tr>`).join('');
+    }
+    ['#currentDpi','#currentSens','#newDpi'].forEach(id=>{ $(id).addEventListener('input',calculate); $(id).addEventListener('change',calculate); });
+    document.querySelectorAll('[data-dpi]').forEach(btn=>btn.addEventListener('click',()=>{ $('#newDpi').value=btn.dataset.dpi; calculate(); }));
+    calculate();
+  </script>
+  <!-- Cloudflare Web Analytics -->
+  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "d150062c061a4cf4803c296831609061"}'></script>
+  <!-- End Cloudflare Web Analytics -->
+</body>
+</html>

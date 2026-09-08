@@ -1,12 +1,9 @@
-# GameTools KR V6
+# GameTools KR V7
 
-V6 adds site trust/monetization groundwork while keeping V5 analytics:
+V7 adds a dedicated **DPI sensitivity calculator** for 400 / 800 / 1600 / 3200 DPI changes while keeping the same eDPI.
 
-- `/about/` site introduction and feedback link
-- `/methodology/` calculation formulas, coefficients, limitations
-- `/privacy/` current data/analytics disclosure
-- footer links across all main pages
-- sitemap updated to 8 URLs
-- Cloudflare Web Analytics beacon retained
+## Deploy
+Upload/commit the repository contents to GitHub. Cloudflare Workers Builds deploys `public/` automatically.
 
-Deploy by uploading `public`, `README.md`, and `wrangler.jsonc` to the existing GitHub repository. Keep the existing Google Search Console verification HTML file in `public/`.
+## Important
+Keep the existing Google Search Console verification HTML file in `public/` if it already exists in the GitHub repository.
