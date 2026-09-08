@@ -68,5 +68,8 @@
   <script>const q=(s)=>document.querySelector(s); const ids=['#game','#dpi','#sens','#targetCm','#targetDpi'];
 function calc(){ const game=q('#game').value,dpi=GameTools.validPositive(q('#dpi').value),sens=GameTools.validPositive(q('#sens').value),tc=GameTools.validPositive(q('#targetCm').value),td=GameTools.validPositive(q('#targetDpi').value); if(!dpi||!sens||!tc||!td){q('#error').hidden=false;q('#error').textContent='0보다 큰 숫자를 입력하세요.';return;} q('#error').hidden=true; const cm=GameTools.cm360(game,dpi,sens); q('#cm').textContent=GameTools.format(cm,2); q('#edpi').textContent=GameTools.format(GameTools.edpi(dpi,sens),2); q('#degcm').textContent=`${GameTools.format(360/cm,2)}°/cm`; q('#neededSens').textContent=GameTools.format(GameTools.sensitivityForCm360(game,td,tc),4); q('#neededGame').textContent=`${GameTools.GAMES[game].name} · ${GameTools.format(td,0)} DPI 기준`; }
 ids.forEach(id=>{q(id).addEventListener('input',calc);q(id).addEventListener('change',calc)}); calc();</script>
+<!-- Cloudflare Web Analytics -->
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "d150062c061a4cf4803c296831609061"}'></script>
+<!-- End Cloudflare Web Analytics -->
 </body>
 </html>

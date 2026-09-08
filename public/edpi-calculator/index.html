@@ -61,5 +61,8 @@
   <script>const q=(s)=>document.querySelector(s); const inputs=[q('#dpi'),q('#sens'),q('#targetDpi')];
 function calc(){ const dpi=GameTools.validPositive(q('#dpi').value), sens=GameTools.validPositive(q('#sens').value), tdpi=GameTools.validPositive(q('#targetDpi').value); if(!dpi||!sens||!tdpi){q('#error').hidden=false;q('#error').textContent='0보다 큰 숫자를 입력하세요.';return;} q('#error').hidden=true; const e=GameTools.edpi(dpi,sens); q('#edpi').textContent=GameTools.format(e,2); q('#targetSens').textContent=GameTools.format(e/tdpi,4); q('#targetText').textContent=`${GameTools.format(tdpi,0)} DPI 기준`; q('#ratio').textContent=`${GameTools.format(tdpi/dpi,2)}×`; }
 inputs.forEach(el=>{el.addEventListener('input',calc);el.addEventListener('change',calc)}); calc();</script>
+<!-- Cloudflare Web Analytics -->
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "d150062c061a4cf4803c296831609061"}'></script>
+<!-- End Cloudflare Web Analytics -->
 </body>
 </html>
