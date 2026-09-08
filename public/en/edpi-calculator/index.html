@@ -1,0 +1,27 @@
+<!doctype html><html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>eDPI Calculator | DPI × Sensitivity</title>
+  <meta name="description" content="Calculate eDPI from DPI and in-game sensitivity, then find the matching sensitivity when you change mouse DPI." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="theme-color" content="#0a0d12" />
+  <link rel="canonical" href="https://gametools-kr.yunsu02192979.workers.dev/en/edpi-calculator/" />
+  <link rel="alternate" hreflang="en" href="https://gametools-kr.yunsu02192979.workers.dev/en/edpi-calculator/" />
+  <link rel="alternate" hreflang="ko" href="https://gametools-kr.yunsu02192979.workers.dev/edpi-calculator/" />
+  <meta property="og:title" content="eDPI Calculator | DPI × Sensitivity" />
+  <meta property="og:description" content="Calculate eDPI from DPI and in-game sensitivity, then find the matching sensitivity when you change mouse DPI." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://gametools-kr.yunsu02192979.workers.dev/en/edpi-calculator/" />
+  <meta property="og:locale" content="en_US" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"eDPI Calculator","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","inLanguage":"en","url":"https://gametools-kr.yunsu02192979.workers.dev/en/edpi-calculator/","description":"Calculate eDPI from DPI and in-game sensitivity, then find the matching sensitivity when you change mouse DPI."}</script>
+</head><body>
+<header class="site-header"><div class="wrap header-inner">
+    <a class="brand" href="/en/" aria-label="GameTools home">GameTools <span>KR</span></a>
+    <nav class="nav" aria-label="Tools"><a href="/en/">Converter</a><a href="/en/edpi-calculator/">eDPI</a><a href="/en/dpi-sensitivity-calculator/">DPI change</a><a href="/en/cm360-calculator/">cm/360</a><a href="/en/valorant-to-cs2/">VAL→CS2</a><a href="/">한국어</a></nav>
+  </div></header>
+<main><section class="page-hero wrap"><div class="eyebrow">FPS AIM TOOL</div><h1>eDPI Calculator</h1><p>Calculate DPI × in-game sensitivity and keep the same eDPI when changing DPI.</p><div class="breadcrumb"><a href="/en/">GameTools</a> / eDPI Calculator</div></section>
+<section class="wrap panel"><div class="section-head"><div><div class="eyebrow">EDPI CALCULATOR</div><h2>Calculate eDPI</h2></div></div><div class="simple-form"><label><span>DPI</span><input id="dpi" type="number" min="1" step="50" value="800"></label><label><span>In-game sensitivity</span><input id="sens" type="number" min="0.0001" step="0.001" value="0.4"></label><label><span>New DPI</span><input id="targetDpi" type="number" min="1" step="50" value="1600"></label></div><div id="error" class="error" hidden></div><div class="simple-result"><article class="result-card featured"><span class="result-label">Current eDPI</span><strong id="edpi">320</strong><small>DPI × sensitivity</small></article><article class="result-card"><span class="result-label">Matching sensitivity at new DPI</span><strong id="targetSens">0.2</strong><small id="targetText">at 1600 DPI</small></article><article class="result-card"><span class="result-label">DPI ratio</span><strong id="ratio">2×</strong><small>Sensitivity changes inversely with DPI</small></article></div></section><section class="wrap content-stack"><article class="panel prose"><div class="eyebrow">GUIDE</div><h2>What is eDPI?</h2><p>eDPI is <strong>DPI × in-game sensitivity</strong>. It is useful for comparing settings inside the same game.</p><p class="formula">eDPI = DPI × sensitivity</p><p>Example: 800 DPI × 0.4 = 320 eDPI. If you move to 1600 DPI and want the same eDPI, use 0.2 sensitivity.</p><p>For different games, use cm/360 instead because sensitivity scales differ.</p></article></section></main><footer><div class="wrap footer-inner"><span>GameTools KR · V8</span><nav class="footer-links" aria-label="Site information"><a href="/methodology/">Methodology</a><a href="/privacy/">Privacy</a><a href="/">한국어</a></nav></div></footer>
+  <!-- Cloudflare Web Analytics -->
+<script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "d150062c061a4cf4803c296831609061"}'></script>
+<!-- End Cloudflare Web Analytics --><script src="/en/core.js"></script><script>const q=s=>document.querySelector(s);function calc(){const d=GameTools.validPositive(q('#dpi').value),s=GameTools.validPositive(q('#sens').value),td=GameTools.validPositive(q('#targetDpi').value);if(!d||!s||!td){q('#error').hidden=false;q('#error').textContent='Enter values greater than 0.';return;}q('#error').hidden=true;const e=GameTools.edpi(d,s);q('#edpi').textContent=GameTools.format(e,2);q('#targetSens').textContent=GameTools.format(e/td,4);q('#targetText').textContent=`at ${GameTools.format(td,0)} DPI`;q('#ratio').textContent=`${GameTools.format(td/d,2)}×`;}['#dpi','#sens','#targetDpi'].forEach(id=>{q(id).addEventListener('input',calc);q(id).addEventListener('change',calc)});calc();</script></body></html>

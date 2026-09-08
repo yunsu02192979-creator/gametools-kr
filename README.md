@@ -1,9 +1,13 @@
-# GameTools KR V7
+# GameTools KR V8
 
-V7 adds a dedicated **DPI sensitivity calculator** for 400 / 800 / 1600 / 3200 DPI changes while keeping the same eDPI.
+V8 adds an English section for international traffic while keeping the Korean pages and analytics.
 
-## Deploy
-Upload/commit the repository contents to GitHub. Cloudflare Workers Builds deploys `public/` automatically.
+English URLs:
+- /en/
+- /en/edpi-calculator/
+- /en/dpi-sensitivity-calculator/
+- /en/cm360-calculator/
+- /en/valorant-to-cs2/
+- /en/cs2-to-valorant/
 
-## Important
-Keep the existing Google Search Console verification HTML file in `public/` if it already exists in the GitHub repository.
+Keep the existing Google Search Console verification file in public/.
